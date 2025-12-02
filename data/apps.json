@@ -1,5 +1,32 @@
 [
   {
+    "name": "Follow a Moving 3D Object",
+    "description": "Shows how to animate a 3D object along a path and keep the camera synced with its movement. The example uses a paraglider model flying through mountain terrain to demonstrate the follow mode behavior.. To bring this visualization to life, we use the 3D paraglider model of Aaron Durogati (ITA), winner of the Red Bull X-Alps 2025.",
+    "mediaType": "video",
+    "media": "./assets/scene-follow-mode.mp4",
+    "previewMedia": "./assets/scene-follow-mode.webp",
+    "samplelink": "https://developers.arcgis.com/javascript/latest/sample-code/scene-follow-mode/",
+    "codeLink": "https://github.com/Esri/arcgis-maps-sdk-javascript-samples/tree/main/scene-follow-mode",
+    "tags": [
+      "3D",
+      "glTF",
+      "ObjectSymbol3DLayer",
+      "viewOnReady",
+      "arcgis-compass",
+      "arcgis-navigation-toggle",
+      "arcgis-scene",
+      "arcgis-zoom",
+      "map-components",
+      "calcite-components",
+      "animation",
+      "animate",
+      "Visualization",
+      "3D visualization",
+      "Animations",
+      "ArcGIS Maps SDK for JavaScript",
+      "Official sample"
+    ]
+  },{
     "name": "Real-Time Path Updates",
     "description": "Shows how to update an existing feature on the map in real time. In this example, a polyline is extended with new coordinates to show the live progression of a path, a pattern often used for tracking or streaming data sources.",
     "mediaType": "video",
@@ -270,33 +297,6 @@
       "calcite-panel",
       "calcite-components",
       "Layers",
-      "ArcGIS Maps SDK for JavaScript",
-      "Official sample"
-    ]
-  },
-  {
-    "name": "Scene - follow mode",
-    "description": "",
-    "mediaType": "image",
-    "media": "./assets/scene-follow-mode.webp",
-    "samplelink": "https://developers.arcgis.com/javascript/latest/sample-code/scene-follow-mode/",
-    "codeLink": "https://github.com/Esri/arcgis-maps-sdk-javascript-samples/tree/main/scene-follow-mode",
-    "tags": [
-      "3D",
-      "glTF",
-      "ObjectSymbol3DLayer",
-      "viewOnReady",
-      "arcgis-compass",
-      "arcgis-navigation-toggle",
-      "arcgis-scene",
-      "arcgis-zoom",
-      "map-components",
-      "calcite-components",
-      "animation",
-      "animate",
-      "Visualization",
-      "3D visualization",
-      "Animations",
       "ArcGIS Maps SDK for JavaScript",
       "Official sample"
     ]
