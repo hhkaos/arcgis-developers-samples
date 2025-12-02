@@ -1,12 +1,12 @@
-# ArcGIS Maps SDK for JavaScript Sample Apps Gallery
+# ArcGIS Developers Samples
 
-[![GitHub Pages](https://img.shields.io/badge/demo-live-brightgreen)](https://yourusername.github.io/arcgis-sample-gallery/)
+[![GitHub Pages](https://img.shields.io/badge/demo-live-brightgreen)](https://hhkaos.github.io/arcgis-developers-samples/)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-A beautiful, responsive gallery showcasing sample applications built with the ArcGIS Maps SDK for JavaScript. Built with vanilla JavaScript, HTML, CSS, and the Calcite Design System.
+Responsive gallery showcasing sample applications built with ArcGIS.
 
-![Gallery Preview](./assets/preview.png)
+![Gallery Preview](./assets/preview.webp)
 
 ## ✨ Features
 
@@ -22,14 +22,14 @@ A beautiful, responsive gallery showcasing sample applications built with the Ar
 
 ### View Live Demo
 
-Visit the [live demo](https://yourusername.github.io/arcgis-sample-gallery/) hosted on GitHub Pages.
+Visit the [live demo](https://www.rauljimenez.info/arcgis-developers-samples/) hosted on GitHub Pages.
 
 ### Run Locally
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/arcgis-sample-gallery.git
-   cd arcgis-sample-gallery
+   git clone https://github.com/hhkaos/arcgis-developers-samples.git
+   cd arcgis-developers-samples
    ```
 
 2. **Serve the files**
@@ -54,7 +54,7 @@ Visit the [live demo](https://yourusername.github.io/arcgis-sample-gallery/) hos
 ## 📁 Project Structure
 
 ```
-arcgis-sample-gallery/
+arcgis-developers-samples/
 ├── index.html              # Main HTML file
 ├── app.js                  # Application logic
 ├── styles.css              # Custom styles
@@ -77,12 +77,13 @@ Each sample app in `data/apps.json` follows this schema:
 ```json
 {
   "name": "string, required",
-  "media": "string, required - URL or relative path to image/GIF/video",
+  "description": "string, required - detailed description",
   "mediaType": "image | gif | video",
+  "media": "string, required - URL or relative path to image/GIF/video (for images and GIFs Webp is recommended)",
+  "previewMedia": "string, required for videos",
   "samplelink": "string, required - URL to the live sample",
   "codeLink": "string, optional - URL to source code",
-  "tags": ["array of strings"],
-  "description": "string, required - detailed description"
+  "tags": ["array of strings"]
 }
 ```
 
@@ -90,14 +91,25 @@ Each sample app in `data/apps.json` follows this schema:
 
 ```json
 {
-  "name": "3D Building Explorer",
-  "media": "./assets/building-3d.jpg",
-  "mediaType": "image",
-  "samplelink": "https://developers.arcgis.com/javascript/latest/sample-code/",
-  "codeLink": "https://github.com/Esri/arcgis-maps-sdk-javascript-samples",
-  "tags": ["3D", "Buildings", "Scene"],
-  "description": "Explore 3D buildings with interactive navigation."
-}
+    "name": "Real-Time Path Updates",
+    "description": "Shows how to update an existing feature on the map in real time. In this example, a polyline is extended with new coordinates to show the live progression of a path, a pattern often used for tracking or streaming data sources.",
+    "mediaType": "video",
+    "media": "./assets/animated-dotted-line-3d.mp4",
+    "previewMedia": "./assets/animated-dotted-line-3d.webp",
+    "samplelink": "https://codepen.io/hhkaos/pen/ByKPXMq/live",
+    "codeLink": "https://codepen.io/hhkaos/pen/ByKPXMq/live",
+    "tags": [
+      "real time",
+      "feature update",
+      "editing",
+      "tracking",
+      "live data",
+      "line",
+      "polyline",
+      "animation",
+      "ArcGIS Maps SDK for JavaScript"
+    ]
+  }
 ```
 
 ## 🎯 Adding New Samples
@@ -116,51 +128,13 @@ Each sample app in `data/apps.json` follows this schema:
 - **IntersectionObserver API** for lazy loading
 - **GitHub Pages** for hosting
 
-## 🎨 Customization
-
-### Modify Grid Layout
-
-Edit the CSS Grid configuration in `styles.css`:
-
-```css
-.gallery-grid {
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-}
-```
-
-### Change Image Height
-
-Modify the CSS variable in `styles.css`:
-
-```css
-:root {
-  --max-image-height: 250px; /* Change this value */
-}
-```
-
-### Update Search Behavior
-
-Adjust search debounce timing in `app.js`:
-
-```javascript
-const CONFIG = {
-  searchDebounceMs: 300 // Milliseconds
-};
-```
-
 ## 🤝 Contributing
 
 We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for:
 
-- How to add new samples
-- Code style guidelines
-- Pull request process
-- Testing requirements
-
 ## 📝 License
 
-This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the Apache License 2.0.
 
 ## 🙏 Acknowledgments
 
@@ -170,13 +144,12 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 
 ## 📧 Support
 
-- **Issues**: [GitHub Issues](https://github.com/yourusername/arcgis-sample-gallery/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/arcgis-sample-gallery/discussions)
+- **Issues**: [GitHub Issues](https://github.com/hhkaos/arcgis-developers-samples/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/hhkaos/arcgis-developers-samples/discussions)
 - **ArcGIS Community**: [Esri Community Forums](https://community.esri.com/)
 
 ## 🔗 Related Resources
 
-- [ArcGIS Maps SDK for JavaScript Documentation](https://developers.arcgis.com/javascript/)
 - [ArcGIS Developer Portal](https://developers.arcgis.com/)
 - [Calcite Design System Documentation](https://developers.arcgis.com/calcite-design-system/)
 

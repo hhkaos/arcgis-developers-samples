@@ -1,16 +1,52 @@
-# Contributing to ArcGIS Sample Gallery
+# Contributing to the gallery
 
 Thank you for your interest in contributing! This document provides guidelines for contributing new sample apps and improvements to the gallery.
 
 ## 📋 Table of Contents
 
-- [How to Contribute](#how-to-contribute)
-- [Adding a New Sample](#adding-a-new-sample)
-- [JSON Validation Rules](#json-validation-rules)
-- [Media Guidelines](#media-guidelines)
-- [Code Style Guidelines](#code-style-guidelines)
-- [Pull Request Process](#pull-request-process)
-- [Testing Locally](#testing-locally)
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [🤝 How to Contribute](#-how-to-contribute)
+- [➕ Adding a New Sample](#-adding-a-new-sample)
+  - [Step 1: Prepare Your Media](#step-1-prepare-your-media)
+  - [Step 2: Update apps.json](#step-2-update-appsjson)
+  - [Step 3: Test Locally](#step-3-test-locally)
+  - [Step 4: Submit Pull Request](#step-4-submit-pull-request)
+- [✅ JSON Validation Rules](#-json-validation-rules)
+  - [Required Fields](#required-fields)
+  - [Optional Fields](#optional-fields)
+  - [Field Requirements](#field-requirements)
+  - [Validation Example](#validation-example)
+- [🎬 Media Guidelines](#-media-guidelines)
+  - [File Size Limits](#file-size-limits)
+  - [Optimization Tips](#optimization-tips)
+  - [Media Requirements](#media-requirements)
+  - [Naming Convention](#naming-convention)
+- [💻 Code Style Guidelines](#-code-style-guidelines)
+  - [JavaScript](#javascript)
+  - [CSS](#css)
+  - [HTML](#html)
+- [🔄 Pull Request Process](#-pull-request-process)
+  - [1. Fork and Clone](#1-fork-and-clone)
+  - [2. Create a Branch](#2-create-a-branch)
+  - [3. Make Changes](#3-make-changes)
+  - [4. Commit Changes](#4-commit-changes)
+  - [5. Push and Create PR](#5-push-and-create-pr)
+- [🧪 Testing Locally](#-testing-locally)
+  - [Prerequisites](#prerequisites)
+- [🐛 Reporting Bugs](#-reporting-bugs)
+- [💡 Suggesting Features](#-suggesting-features)
+- [App configurations](#app-configurations)
+- [🎨 Customization](#-customization)
+  - [Modify Grid Layout](#modify-grid-layout)
+  - [Change Image Height](#change-image-height)
+  - [Update Search Behavior](#update-search-behavior)
+- [📞 Questions?](#-questions)
+- [📜 Code of Conduct](#-code-of-conduct)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## 🤝 How to Contribute
 
@@ -37,12 +73,13 @@ Add a new entry to `data/apps.json`:
 ```json
 {
   "name": "Your Sample Name",
-  "media": "./assets/your-sample.jpg",
-  "mediaType": "image",
+  "description": "A clear, concise description of what the sample demonstrates.",
+  "mediaType": "video",
+  "media": "./assets/your-sample.mp4",
+  "previewMedia": "./assets/your-sample.webp",
   "samplelink": "https://link-to-live-sample.com",
   "codeLink": "https://github.com/your-repo/sample-code",
-  "tags": ["Tag1", "Tag2", "Tag3"],
-  "description": "A clear, concise description of what the sample demonstrates."
+  "tags": ["Tag1", "Tag2", "Tag3"]
 }
 ```
 
@@ -66,27 +103,30 @@ Follow the [Pull Request Process](#pull-request-process) below.
 All samples **must** include:
 
 - `name` (string): Display name of the sample
-- `media` (string): Path or URL to media file
+- `description` (string): Meaningful description (minimum 50 characters)
 - `mediaType` (string): One of: `"image"`, `"gif"`, `"video"`
+- `media` (string): Path or URL to media file
 - `samplelink` (string): URL to the live sample
 - `tags` (array): At least one tag
-- `description` (string): Meaningful description (minimum 50 characters)
+
 
 ### Optional Fields
 
 - `codeLink` (string): URL to source code repository
+- `previewMedia` (string): Path or URL to media file (required if mediaType=video)
 
 ### Field Requirements
 
 | Field | Type | Required | Max Length | Notes |
 |-------|------|----------|------------|-------|
 | name | string | Yes | 100 chars | Clear, descriptive name |
-| media | string | Yes | - | Relative or absolute URL |
+| description | string | Yes | 500 chars | Min 50 chars recommended |
 | mediaType | string | Yes | - | Must be: image, gif, or video |
+| media | string | Yes | - | Relative or absolute URL |
+| previewMedia | string | Yes | - | Relative or absolute URL |
 | samplelink | string | Yes | - | Must be valid URL |
 | codeLink | string | No | - | Must be valid URL |
 | tags | array | Yes | 5 tags max | Each tag max 20 chars |
-| description | string | Yes | 500 chars | Min 50 chars recommended |
 
 ### Validation Example
 
@@ -94,12 +134,13 @@ All samples **must** include:
 // ✅ VALID
 {
   "name": "3D Visualization",
-  "media": "./assets/3d-viz.jpg",
+  "description": "This sample demonstrates 3D visualization techniques...",
   "mediaType": "image",
+  "media": "./assets/3d-viz.jpg",
   "samplelink": "https://example.com/sample",
   "codeLink": "https://github.com/example/sample",
-  "tags": ["3D", "Visualization"],
-  "description": "This sample demonstrates 3D visualization techniques..."
+  "tags": ["3D", "Visualization"]
+  
 }
 
 // ❌ INVALID - Missing required fields
@@ -123,7 +164,7 @@ All samples **must** include:
 
 ### File Size Limits
 
-- **Images (JPG/PNG)**: Maximum 500 KB (recommended 200-300 KB)
+- **Images (JPG/PNG/WEBP)**: Maximum 500 KB (recommended 200-300 KB)
 - **GIFs**: Maximum 2 MB (recommended 500 KB - 1 MB)
 - **Videos (MP4)**: Maximum 5 MB (recommended 1-3 MB)
 
@@ -156,13 +197,17 @@ ffmpeg -i input.mp4 -vcodec h264 -acodec none -vf scale=800:-1 output.mp4
 
 ### Media Requirements
 
-- **Dimensions**: 800x600px or similar aspect ratio (4:3 or 16:9)
+- **Dimensions**: 
+  - Aspect ratio (16:9) (recommended width: 700x394)
+  - For `previewMedia` (recommended: 350x197)
 - **Format**: 
-  - Images: JPG or PNG
-  - GIFs: GIF
+  - Images: [WebP](https://en.wikipedia.org/wiki/WebP) (recommended), JPG or PNG
+  - GIFs: GIF / Animated WebP
   - Videos: MP4 (H.264 codec, no audio)
 - **Content**: Must accurately represent the sample
 - **Copyright**: Ensure you have rights to use the media
+
+> **Note**: Check the [utils folder](./utils) to find a script to convert static images or animated GIFs to Webp.
 
 ### Naming Convention
 
@@ -185,20 +230,6 @@ Use descriptive, lowercase filenames with hyphens:
 - Use **ES6+** syntax
 - Use **const** and **let**, not **var**
 - Use **async/await** for asynchronous code
-- Include **JSDoc** comments for functions
-- Follow **2-space indentation**
-
-```javascript
-/**
- * Searches apps using fuzzy matching
- * @param {Array} items - Array of app objects
- * @param {string} query - Search query
- * @returns {Array} Filtered and sorted results
- */
-function fuzzySearch(items, query) {
-  // Implementation
-}
-```
 
 ### CSS
 
@@ -231,8 +262,8 @@ function fuzzySearch(items, query) {
 ### 1. Fork and Clone
 
 ```bash
-git clone https://github.com/yourusername/arcgis-sample-gallery.git
-cd arcgis-sample-gallery
+git clone https://github.com/hhkaos/arcgis-developers-samples.git
+cd arcgis-developers-samples
 ```
 
 ### 2. Create a Branch
@@ -275,22 +306,6 @@ Then create a Pull Request on GitHub with:
 - **Screenshot**: Include a preview image
 - **Checklist**: Use the template below
 
-### Pull Request Checklist
-
-```markdown
-## Pull Request Checklist
-
-- [ ] JSON entry follows schema exactly
-- [ ] Media file is optimized (under size limits)
-- [ ] All links are valid and working
-- [ ] Sample appears correctly in local testing
-- [ ] Search finds the sample by name and tags
-- [ ] Modal displays all information
-- [ ] No console errors
-- [ ] Commit message is descriptive
-- [ ] Media file included in assets/
-```
-
 ## 🧪 Testing Locally
 
 ### Prerequisites
@@ -312,43 +327,6 @@ npx serve -p 8000
 php -S localhost:8000
 ```
 
-### Testing Checklist
-
-1. **Visual Testing**
-   - [ ] Sample card appears in gallery
-   - [ ] Media loads without errors
-   - [ ] Hover overlay works correctly
-   - [ ] Modal opens and displays all info
-   - [ ] Tags are visible and formatted
-
-2. **Functional Testing**
-   - [ ] Search finds sample by name
-   - [ ] Search finds sample by tags
-   - [ ] Search finds sample by description
-   - [ ] All links open in new tabs
-   - [ ] Modal closes on ESC key
-   - [ ] No JavaScript errors in console
-
-3. **Responsive Testing**
-   - [ ] Test on mobile viewport (375px)
-   - [ ] Test on tablet viewport (768px)
-   - [ ] Test on desktop viewport (1280px)
-   - [ ] Touch interactions work on mobile
-
-4. **Performance Testing**
-   - [ ] Images use lazy loading
-   - [ ] Videos only load when visible
-   - [ ] No layout shift during load
-   - [ ] Search responds quickly
-
-### Browser Testing
-
-Test in these browsers (latest versions):
-
-- Chrome
-- Firefox
-- Safari
-- Edge
 
 ## 🐛 Reporting Bugs
 
@@ -371,10 +349,45 @@ For feature requests, provide:
 3. **Alternatives**: Other approaches considered
 4. **Additional context**: Mockups, examples, etc.
 
+## App configurations
+
+## 🎨 Customization
+
+### Modify Grid Layout
+
+Edit the CSS Grid configuration in `styles.css`:
+
+```css
+.gallery-grid {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+```
+
+### Change Image Height
+
+Modify the CSS variable in `styles.css`:
+
+```css
+:root {
+  --max-image-height: 250px; /* Change this value */
+}
+```
+
+### Update Search Behavior
+
+Adjust search debounce timing in `app.js`:
+
+```javascript
+const CONFIG = {
+  searchDebounceMs: 300 // Milliseconds
+};
+```
+
 ## 📞 Questions?
 
-- **General questions**: [GitHub Discussions](https://github.com/yourusername/arcgis-sample-gallery/discussions)
-- **Bug reports**: [GitHub Issues](https://github.com/yourusername/arcgis-sample-gallery/issues)
+- **General questions**: [GitHub Discussions](https://github.com/hhkaos/arcgis-developers-samples/discussions)
+- **Bug reports**: [GitHub Issues](https://github.com/hhkaos/arcgis-developers-samples/issues)
 - **Direct contact**: Create an issue and tag maintainers
 
 ## 📜 Code of Conduct
