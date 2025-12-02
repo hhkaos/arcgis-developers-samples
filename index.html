@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArcGIS Mapping Apps Sample Gallery</title>
+  
+  <!-- Calcite Design System -->
+  <script type="module" src="https://js.arcgis.com/calcite-components/2.5.1/calcite.esm.js"></script>
+  <link rel="stylesheet" href="https://js.arcgis.com/calcite-components/2.5.1/calcite.css" />
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <calcite-shell>
+    <!-- Navigation -->
+    <calcite-navigation slot="header" label="Main navigation">
+      <calcite-navigation-logo 
+        slot="logo" 
+        heading="ArcGIS Mapping Apps Sample Gallery"
+        description="Sample Gallery">
+      </calcite-navigation-logo>
+      
+      <!-- Search Bar -->
+      <div slot="content-end" class="search-container">
+        <calcite-input
+          id="search-input"
+          type="search"
+          placeholder="Search samples..."
+          icon="search"
+          scale="m"
+          aria-label="Search sample apps">
+        </calcite-input>
+      </div>
+      
+      <!-- Contribute Button -->
+      <calcite-button 
+        slot="content-end"
+        href="https://github.com/yourusername/arcgis-sample-gallery"
+        target="_blank"
+        icon-start="plus"
+        scale="m"
+        kind="brand">
+        Contribute
+      </calcite-button>
+    </calcite-navigation>
+
+    <!-- Main Content -->
+    <div class="content-wrapper">
+      <!-- Grid Container -->
+      <div id="gallery-grid" class="gallery-grid"></div>
+      
+      <!-- No Results Message -->
+      <calcite-notice 
+        id="no-results" 
+        kind="info" 
+        icon="information"
+        scale="l"
+        style="display: none;">
+        <div slot="title">No results found</div>
+        <div slot="message">Try adjusting your search terms</div>
+      </calcite-notice>
+    </div>
+
+    <!-- Modal for Details -->
+    <calcite-modal 
+      id="details-modal" 
+      aria-labelledby="modal-title"
+      scale="l"
+      width-scale="m">
+      <div slot="header" id="modal-title"></div>
+      <div slot="content" id="modal-content"></div>
+      <calcite-button 
+        slot="primary" 
+        id="modal-open-sample"
+        icon-start="launch"
+        width="full">
+        Preview
+      </calcite-button>
+      <calcite-button 
+        slot="secondary" 
+        id="modal-view-code"
+        icon-start="code"
+        width="full"
+        style="display: none;">
+        View Code
+      </calcite-button>
+    </calcite-modal>
+  </calcite-shell>
+
+  <!-- Application Script -->
+  <script src="app.js"></script>
+</body>
+</html>
