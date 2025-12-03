@@ -158,6 +158,7 @@ calcite-navigation {
   font-weight: 600;
   margin-bottom: 1rem;
   text-align: center;
+  text-transform: capitalize;
 }
 
 .overlay-buttons {
