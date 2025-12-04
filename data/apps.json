@@ -417,7 +417,7 @@
   "name": "Animated Crosshair Pointer",
     "description": "An interactive demo app powered by the ArcGIS API for JavaScript. Navigate with a dynamic crosshair cursor and experience smooth animations as you hover over features.",
     "mediaType": "video",
-    "media": "./assets/animated-selection.webp",
+    "media": "./assets/animated-selection.mp4",
     "previewMedia": "./assets/animated-selection.webp",
     "samplelink": "https://seanst.one/animated-selection/",
     "codeLink": "https://github.com/sean-stone/map-crosshair-cursor",
